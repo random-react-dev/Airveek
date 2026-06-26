@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { hostGrotesk } from "@lib/fonts";
 import "@styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Airvik",
-  description: "Simple PMS software for small and medium hotels.",
+  title: "Airvik | Hotel PMS Software",
+  description: "Simple PMS software for small and medium hotels to manage bookings, rooms, payments and staff workflows.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -18,3 +18,4 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
+
