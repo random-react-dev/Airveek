@@ -18,7 +18,7 @@ export default function SectionHeader({
       {eyebrow ? (
         <p className="text-sm font-bold uppercase text-primary">{eyebrow}</p>
       ) : null}
-      <h2 className="mt-3 text-3xl font-extrabold leading-tight text-text sm:text-4xl lg:text-5xl">
+      <h2 className="mt-4 text-3xl font-bold leading-tight text-text sm:text-4xl lg:text-5xl">
         {title}
       </h2>
       {description ? (

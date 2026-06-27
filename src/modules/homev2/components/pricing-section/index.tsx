@@ -1,55 +1,212 @@
-﻿import SectionHeader from "@modules/homev2/components/section-header";
-import { pricingPlans } from "@modules/homev2/config/landing-page";
+import Link from "next/link";
+import { Check, CircleCheckBig } from "lucide-react";
+
+type PricingPlan = {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  cta: string;
+  popular?: boolean;
+};
+
+const pricingPlans: PricingPlan[] = [
+  {
+    name: "Starter",
+    price: "₹1,499",
+    description:
+      "For smaller properties ready to bring reservations, rooms and payment tracking into one PMS.",
+    features: [
+      "Reservation management",
+      "Visual booking calendar",
+      "Rooms, rates and guest profiles",
+      "Cash and UPI payment tracking",
+      "Guided property setup",
+      "Standard support",
+    ],
+    cta: "Get Starter Pricing",
+  },
+  {
+    name: "Growth",
+    price: "₹2,999",
+    description:
+      "For hotel teams that need connected front desk, housekeeping, reports and staff controls.",
+    features: [
+      "Everything in Starter",
+      "Housekeeping room readiness",
+      "Occupancy, revenue and collection reports",
+      "Roles and permissions",
+      "Activity visibility",
+      "Team training and go-live assistance",
+    ],
+    cta: "Get Growth Pricing",
+    popular: true,
+  },
+  {
+    name: "Custom",
+    price: "₹5,999",
+    description:
+      "For properties with workflow, integration or rollout requirements beyond the standard plans.",
+    features: [
+      "Everything in Growth",
+      "Property workflow review",
+      "Approved custom workflows",
+      "Integration scoping",
+      "Data migration assessment",
+      "Dedicated rollout planning",
+    ],
+    cta: "Discuss Your Requirements",
+  },
+];
+
+const pricingClarity = [
+  "Monthly subscription",
+  "Included users and access",
+  "Setup or migration fees",
+  "Optional and custom work",
+] as const;
 
 export default function PricingSection() {
   return (
-    <section id="pricing" className="scroll-mt-28 bg-bg py-20 sm:py-24">
+    <section
+      id="pricing"
+      aria-labelledby="pricing-title"
+      className="scroll-mt-28 bg-bg-soft py-20 sm:py-24"
+    >
       <div className="container">
-        <SectionHeader
-          eyebrow="Pricing"
-          title="Room-count based plans with a guided trial first."
-          description="Until final packages are locked, the page gives pricing direction without fake numbers."
-          align="center"
-        />
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-bold uppercase text-primary">Pricing</p>
+          <h2
+            id="pricing-title"
+            className="mt-4 text-3xl font-bold leading-tight text-text sm:text-4xl lg:text-5xl"
+          >
+            Simple plans for every property.
+          </h2>
+          <p className="mt-5 text-base leading-7 text-text-muted sm:text-lg sm:leading-8">
+            Choose the operating plan that fits your hotel. Every plan is
+            billed monthly, while setup, migration and optional requirements
+            are outlined separately.
+          </p>
+        </div>
+
+        <div className="mt-12 grid items-stretch gap-5 lg:mt-16 lg:grid-cols-3">
           {pricingPlans.map((plan) => (
             <article
               key={plan.name}
-              className={`rounded-[30px] border p-6 sm:p-8 ${
-                plan.highlighted
-                  ? "border-primary bg-text text-white"
-                  : "border-border bg-bg-soft text-text"
+              className={`relative flex h-full flex-col overflow-hidden rounded-[28px] border p-6 pt-10 sm:p-8 sm:pt-10 ${
+                plan.popular
+                  ? "border-black bg-black text-white shadow-[0_24px_70px_rgba(0,0,0,0.16)]"
+                  : "border-border bg-bg text-text"
               }`}
             >
-              <p className="text-sm font-extrabold uppercase text-primary">
-                {plan.note}
-              </p>
-              <h3 className="mt-4 text-3xl font-extrabold">{plan.name}</h3>
-              <p className="mt-3 text-4xl font-extrabold">{plan.price}</p>
+              {plan.popular ? (
+                <p className="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl bg-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white">
+                  Most Popular
+                </p>
+              ) : null}
+
+              <h3 className="text-2xl font-medium">{plan.name}</h3>
+
+              <div
+                className={`mt-2 border-b pb-6 ${
+                  plan.popular ? "border-white/15" : "border-border"
+                }`}
+              >
+                <div className="flex items-end gap-2">
+                  <p className="text-4xl font-bold sm:text-4xl">{plan.price}</p>
+                  <p
+                    className={`pb-1 text-sm font-medium ${
+                      plan.popular ? "text-white/60" : "text-text-muted"
+                    }`}
+                  >
+                    /month
+                  </p>
+                </div>
+              </div>
+
               <p
-                className={`mt-4 text-sm leading-6 ${
-                  plan.highlighted ? "text-white/70" : "text-text-muted"
+                className={`mt-6 text-sm leading-6 sm:text-base sm:leading-7 ${
+                  plan.popular ? "text-white/70" : "text-text-muted"
                 }`}
               >
                 {plan.description}
               </p>
-              <div className="mt-8 grid gap-3">
+
+              <ul
+                className="mt-7 grid gap-4"
+                aria-label={`${plan.name} plan includes`}
+              >
                 {plan.features.map((feature) => (
-                  <div
-                    key={feature}
-                    className={`rounded-full px-4 py-3 text-sm font-extrabold ${
-                      plan.highlighted
-                        ? "border border-white/15"
-                        : "bg-bg"
-                    }`}
-                  >
-                    {feature}
-                  </div>
+                  <li key={feature} className="flex items-start gap-3">
+                    <span
+                      className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full ${
+                        plan.popular
+                          ? "bg-primary text-white"
+                          : "bg-primary-soft text-primary"
+                      }`}
+                    >
+                      <Check
+                        aria-hidden="true"
+                        className="size-3"
+                        strokeWidth={2.5}
+                      />
+                    </span>
+                    <span
+                      className={`text-sm leading-6 ${
+                        plan.popular ? "text-white/85" : "text-text"
+                      }`}
+                    >
+                      {feature}
+                    </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
+
+              <Link
+                href="#cta"
+                className={`mt-8 inline-flex h-12 items-center justify-center rounded-full border px-5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none ${
+                  plan.popular
+                    ? "border-white bg-white text-text hover:border-primary hover:bg-primary hover:text-white"
+                    : "border-border bg-bg-soft text-text hover:border-primary hover:bg-white hover:text-primary"
+                }`}
+              >
+                {plan.cta}
+              </Link>
             </article>
           ))}
         </div>
+
+        <div className="mt-6 rounded-[24px] border border-border bg-bg px-6 py-6 sm:px-8 lg:flex lg:items-center lg:justify-between lg:gap-10">
+          <div className="max-w-xl">
+            <p className="text-lg font-bold text-text">
+              Clear before you commit.
+            </p>
+            <p className="mt-2 text-sm leading-6 text-text-muted">
+              Your Airveek proposal clearly separates recurring pricing from
+              one-time and optional services.
+            </p>
+          </div>
+
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:mt-0 lg:min-w-[520px]">
+            {pricingClarity.map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-2 text-sm font-medium text-text"
+              >
+                <CircleCheckBig
+                  aria-hidden="true"
+                  className="size-4 shrink-0 text-primary"
+                />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-6 text-text-muted">
+          Prices are billed monthly. Setup, migration, integrations and
+          property-specific work may be quoted separately.
+        </p>
       </div>
     </section>
   );

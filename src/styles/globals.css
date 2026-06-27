@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 :root {
   --color-primary: #f15f22;
@@ -26,14 +26,14 @@
   --color-primary-soft: #fff0e8;
   --color-background: var(--color-bg);
   --color-foreground: var(--color-text);
-  --font-sans: var(--font-host-grotesk);
+  --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-host-grotesk), Arial, Helvetica, sans-serif;
 }
+
 .container {
   width: 100%;
   max-width: 1440px;

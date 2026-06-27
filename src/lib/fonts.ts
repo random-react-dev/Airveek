@@ -1,43 +1,53 @@
-import localFont from "next/font/local";
+﻿import localFont from "next/font/local";
 
-export const hostGrotesk = localFont({
+export const inter = localFont({
   src: [
     {
-      path: "../../public/assets/fonts/HostGrotesk-Light.ttf",
+      path: "../../public/assets/fonts/Inter_18pt-Thin.ttf",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../../public/assets/fonts/Inter_18pt-Light.ttf",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/HostGrotesk-Regular.ttf",
+      path: "../../public/assets/fonts/Inter_18pt-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/HostGrotesk-Medium.ttf",
+      path: "../../public/assets/fonts/Inter_18pt-Italic.ttf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../../public/assets/fonts/Inter_18pt-Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/HostGrotesk-SemiBold.ttf",
+      path: "../../public/assets/fonts/Inter_18pt-SemiBold.ttf",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/HostGrotesk-Bold.ttf",
+      path: "../../public/assets/fonts/Inter_18pt-Bold.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/HostGrotesk-ExtraBold.ttf",
+      path: "../../public/assets/fonts/Inter_18pt-ExtraBold.ttf",
       weight: "800",
       style: "normal",
     },
     {
-      path: "../../public/assets/fonts/HostGrotesk-Italic.ttf",
-      weight: "400",
-      style: "italic",
+      path: "../../public/assets/fonts/Inter_18pt-Black.ttf",
+      weight: "900",
+      style: "normal",
     },
   ],
-  variable: "--font-host-grotesk",
+  variable: "--font-inter",
   display: "swap",
 });
