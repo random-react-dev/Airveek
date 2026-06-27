@@ -1,5 +1,5 @@
-import HomePage from "@modules/home/templates";
+import HomeV2Page from "@modules/homev2/templates";
 
 export default function Page() {
-  return <HomePage />;
+  return <HomeV2Page />;
 }
