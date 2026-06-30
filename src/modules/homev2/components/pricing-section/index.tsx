@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Check, CircleCheckBig } from "lucide-react";
+import SectionHeader from "../section-header";
 
 type PricingPlan = {
   name: string;
@@ -15,7 +16,7 @@ const pricingPlans: PricingPlan[] = [
     name: "Starter",
     price: "₹1,499",
     description:
-      "For smaller properties ready to bring reservations, rooms and payment tracking into one PMS.",
+      "For small properties that need a simple way to manage reservations, rooms and payments.",
     features: [
       "Reservation management",
       "Visual booking calendar",
@@ -30,7 +31,7 @@ const pricingPlans: PricingPlan[] = [
     name: "Growth",
     price: "₹2,999",
     description:
-      "For hotel teams that need connected front desk, housekeeping, reports and staff controls.",
+      "For hotel teams that need housekeeping, reports, staff access and better daily visibility.",
     features: [
       "Everything in Starter",
       "Housekeeping room readiness",
@@ -46,7 +47,7 @@ const pricingPlans: PricingPlan[] = [
     name: "Custom",
     price: "₹5,999",
     description:
-      "For properties with workflow, integration or rollout requirements beyond the standard plans.",
+      "For properties that need custom workflows, integrations, migration or multi-property rollout.",
     features: [
       "Everything in Growth",
       "Property workflow review",
@@ -74,30 +75,21 @@ export default function PricingSection() {
       className="scroll-mt-28 bg-bg-soft py-20 sm:py-24"
     >
       <div className="container">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-bold uppercase text-primary">Pricing</p>
-          <h2
-            id="pricing-title"
-            className="mt-4 text-3xl font-bold leading-tight text-text sm:text-4xl lg:text-5xl"
-          >
-            Simple plans for every property.
-          </h2>
-          <p className="mt-5 text-base leading-7 text-text-muted sm:text-lg sm:leading-8">
-            Choose the operating plan that fits your hotel. Every plan is
-            billed monthly, while setup, migration and optional requirements
-            are outlined separately.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="Pricing"
+          title="Airveek pricing plans"
+          description="Simple monthly plans with clear options for setup, support and property-specific requirements."
+          align="center"
+        />
 
         <div className="mt-12 grid items-stretch gap-5 lg:mt-16 lg:grid-cols-3">
           {pricingPlans.map((plan) => (
             <article
               key={plan.name}
-              className={`relative flex h-full flex-col overflow-hidden rounded-[28px] border p-6 pt-10 sm:p-8 sm:pt-10 ${
-                plan.popular
-                  ? "border-black bg-black text-white shadow-[0_24px_70px_rgba(0,0,0,0.16)]"
-                  : "border-border bg-bg text-text"
-              }`}
+              className={`relative flex h-full flex-col overflow-hidden rounded-[28px] border p-6 pt-10 sm:p-8 sm:pt-10 ${plan.popular
+                ? "border-black bg-black text-white shadow-[0_24px_70px_rgba(0,0,0,0.16)]"
+                : "border-border bg-bg text-text"
+                }`}
             >
               {plan.popular ? (
                 <p className="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl bg-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white">
@@ -108,16 +100,14 @@ export default function PricingSection() {
               <h3 className="text-2xl font-medium">{plan.name}</h3>
 
               <div
-                className={`mt-2 border-b pb-6 ${
-                  plan.popular ? "border-white/15" : "border-border"
-                }`}
+                className={`mt-2 border-b pb-6 ${plan.popular ? "border-white/15" : "border-border"
+                  }`}
               >
                 <div className="flex items-end gap-2">
                   <p className="text-4xl font-bold sm:text-4xl">{plan.price}</p>
                   <p
-                    className={`pb-1 text-sm font-medium ${
-                      plan.popular ? "text-white/60" : "text-text-muted"
-                    }`}
+                    className={`pb-1 text-sm font-medium ${plan.popular ? "text-white/60" : "text-text-muted"
+                      }`}
                   >
                     /month
                   </p>
@@ -125,9 +115,8 @@ export default function PricingSection() {
               </div>
 
               <p
-                className={`mt-6 text-sm leading-6 sm:text-base sm:leading-7 ${
-                  plan.popular ? "text-white/70" : "text-text-muted"
-                }`}
+                className={`mt-6 text-sm leading-6 sm:text-base sm:leading-7 ${plan.popular ? "text-white/70" : "text-text-muted"
+                  }`}
               >
                 {plan.description}
               </p>
@@ -139,11 +128,10 @@ export default function PricingSection() {
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
                     <span
-                      className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full ${
-                        plan.popular
-                          ? "bg-primary text-white"
-                          : "bg-primary-soft text-primary"
-                      }`}
+                      className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full ${plan.popular
+                        ? "bg-primary text-white"
+                        : "bg-primary-soft text-primary"
+                        }`}
                     >
                       <Check
                         aria-hidden="true"
@@ -152,9 +140,8 @@ export default function PricingSection() {
                       />
                     </span>
                     <span
-                      className={`text-sm leading-6 ${
-                        plan.popular ? "text-white/85" : "text-text"
-                      }`}
+                      className={`text-sm leading-6 ${plan.popular ? "text-white/85" : "text-text"
+                        }`}
                     >
                       {feature}
                     </span>
@@ -164,49 +151,16 @@ export default function PricingSection() {
 
               <Link
                 href="#cta"
-                className={`mt-8 inline-flex h-12 items-center justify-center rounded-full border px-5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none ${
-                  plan.popular
-                    ? "border-white bg-white text-text hover:border-primary hover:bg-primary hover:text-white"
-                    : "border-border bg-bg-soft text-text hover:border-primary hover:bg-white hover:text-primary"
-                }`}
+                className={`mt-8 inline-flex h-12 items-center justify-center rounded-full border px-5 text-sm font-medium transition-all duration-200 ease-out focus-visible:outline-none ${plan.popular
+                  ? "border-white bg-white text-text hover:border-primary hover:bg-primary hover:text-white"
+                  : "border-border bg-bg-soft text-text hover:border-primary hover:bg-white hover:text-primary"
+                  }`}
               >
                 {plan.cta}
               </Link>
             </article>
           ))}
         </div>
-
-        <div className="mt-6 rounded-[24px] border border-border bg-bg px-6 py-6 sm:px-8 lg:flex lg:items-center lg:justify-between lg:gap-10">
-          <div className="max-w-xl">
-            <p className="text-lg font-bold text-text">
-              Clear before you commit.
-            </p>
-            <p className="mt-2 text-sm leading-6 text-text-muted">
-              Your Airveek proposal clearly separates recurring pricing from
-              one-time and optional services.
-            </p>
-          </div>
-
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:mt-0 lg:min-w-[520px]">
-            {pricingClarity.map((item) => (
-              <li
-                key={item}
-                className="flex items-center gap-2 text-sm font-medium text-text"
-              >
-                <CircleCheckBig
-                  aria-hidden="true"
-                  className="size-4 shrink-0 text-primary"
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-6 text-text-muted">
-          Prices are billed monthly. Setup, migration, integrations and
-          property-specific work may be quoted separately.
-        </p>
       </div>
     </section>
   );
