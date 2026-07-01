@@ -18,8 +18,8 @@ export default function HomeV2Page() {
       <ComparisonSection />
       <PricingSection />
       {/* <SecurityDataControlSection /> */}
-      <FaqSection />
       <FinalCtaSection />
+      <FaqSection />
     </>
   );
 }

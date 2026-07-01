@@ -60,13 +60,6 @@ const pricingPlans: PricingPlan[] = [
   },
 ];
 
-const pricingClarity = [
-  "Monthly subscription",
-  "Included users and access",
-  "Setup or migration fees",
-  "Optional and custom work",
-] as const;
-
 export default function PricingSection() {
   return (
     <section
@@ -87,12 +80,12 @@ export default function PricingSection() {
             <article
               key={plan.name}
               className={`relative flex h-full flex-col overflow-hidden rounded-[28px] border p-6 pt-10 sm:p-8 sm:pt-10 ${plan.popular
-                ? "border-black bg-black text-white shadow-[0_24px_70px_rgba(0,0,0,0.16)]"
+                ? "border-none bg-primary text-white shadow-[0_24px_70px_rgba(0,0,0,0.16)]"
                 : "border-border bg-bg text-text"
                 }`}
             >
               {plan.popular ? (
-                <p className="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl bg-primary px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white">
+                <p className="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] text-black">
                   Most Popular
                 </p>
               ) : null}
@@ -100,13 +93,13 @@ export default function PricingSection() {
               <h3 className="text-2xl font-medium">{plan.name}</h3>
 
               <div
-                className={`mt-2 border-b pb-6 ${plan.popular ? "border-white/15" : "border-border"
+                className={`mt-2 border-b pb-6 ${plan.popular ? "border-white/40" : "border-border"
                   }`}
               >
                 <div className="flex items-end gap-2">
                   <p className="text-4xl font-bold sm:text-4xl">{plan.price}</p>
                   <p
-                    className={`pb-1 text-sm font-medium ${plan.popular ? "text-white/60" : "text-text-muted"
+                    className={`pb-1 text-sm font-medium ${plan.popular ? "text-white/80" : "text-text-muted"
                       }`}
                   >
                     /month
@@ -115,7 +108,7 @@ export default function PricingSection() {
               </div>
 
               <p
-                className={`mt-6 text-sm leading-6 sm:text-base sm:leading-7 ${plan.popular ? "text-white/70" : "text-text-muted"
+                className={`mt-6 text-sm leading-6 sm:text-base sm:leading-7 ${plan.popular ? "text-white/85" : "text-text-muted"
                   }`}
               >
                 {plan.description}
@@ -129,7 +122,7 @@ export default function PricingSection() {
                   <li key={feature} className="flex items-start gap-3">
                     <span
                       className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full ${plan.popular
-                        ? "bg-primary text-white"
+                        ? "bg-white text-primary"
                         : "bg-primary-soft text-primary"
                         }`}
                     >
@@ -140,7 +133,7 @@ export default function PricingSection() {
                       />
                     </span>
                     <span
-                      className={`text-sm leading-6 ${plan.popular ? "text-white/85" : "text-text"
+                      className={`text-sm leading-6 ${plan.popular ? "text-white" : "text-text"
                         }`}
                     >
                       {feature}
@@ -152,7 +145,7 @@ export default function PricingSection() {
               <Link
                 href="#cta"
                 className={`mt-8 inline-flex h-12 items-center justify-center rounded-full border px-5 text-sm font-medium transition-all duration-200 ease-out focus-visible:outline-none ${plan.popular
-                  ? "border-white bg-white text-text hover:border-primary hover:bg-primary hover:text-white"
+                  ? "border-white bg-white text-text hover:border-white hover:bg-primary-soft hover:text-primary"
                   : "border-border bg-bg-soft text-text hover:border-primary hover:bg-white hover:text-primary"
                   }`}
               >
